@@ -9,16 +9,12 @@
 <style>
 body{margin:0;background:#FFFFFF;}
 a{color:#1C1D1F}a:hover{color:#B04A2F}
-#proto{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:8px;background:#1C1D1F;color:#FFFFFF;font:600 13px 'Archivo',sans-serif;padding:8px 8px 8px 14px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25);}
-#proto select{font:inherit;font-weight:500;border:0;border-radius:999px;padding:8px 10px;background:#FFFFFF;color:#1C1D1F;}
-@media (max-width: 700px){#proto{display:none;}}
 img{max-width:100%;}
 *{-webkit-tap-highlight-color:transparent;}
 </style>
 </head>
 <body>
 <div id="app"></div>
-<div id="proto"><label for="jump">Prototype page</label><select id="jump"></select></div>
 <template id="tpl-SiteHome">
 
 <div style="width: 100%; background: #FFFFFF; color: #1C1D1F; font-family: 'Archivo', sans-serif;">
@@ -1240,9 +1236,6 @@ function register(name, title, cls, isPage) {
   if (isPage) PAGES.push({ name, title });
 }
 function boot() {
-  const jump = document.getElementById('jump');
-  PAGES.forEach((p) => { const o = document.createElement('option'); o.value = p.name; o.textContent = p.title.replace(/ — Southern Strength$/, '').replace(/^Southern Strength — /, ''); jump.appendChild(o); });
-  jump.addEventListener('change', () => navigate(jump.value));
   navigate(location.hash.slice(1) || PAGES[0].name, false);
 }
 
